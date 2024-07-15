@@ -38,6 +38,8 @@ impl LabelPoll for Label {
         let label = self.clone();
         let stream = interval_stream(Duration::from_millis(100));
 
+        label.set_label(func().as_str());
+
         glib::MainContext::default().spawn_local(async move {
            let mut stream = stream;
            let mut old = func();
