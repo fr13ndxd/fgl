@@ -5,7 +5,7 @@ use gtk4::prelude::ButtonExt;
 use gtk4::Button;
 use std::time::Duration;
 
-pub trait LabelPoll {
+pub trait ButtonOptions {
     fn poll<F>(&self, interval: u64, func: F)
     where
         F: Fn() -> String + 'static;
@@ -15,7 +15,7 @@ pub trait LabelPoll {
         F: Fn() -> String + Send + Sync + 'static;
 }
 
-impl LabelPoll for Button {
+impl ButtonOptions for Button {
     fn poll<F>(&self, interval: u64, func: F)
     where
         F: Fn() -> String + 'static,

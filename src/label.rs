@@ -4,7 +4,7 @@ use gtk4::glib;
 use gtk4::Label;
 use std::time::Duration;
 
-pub trait LabelPoll {
+pub trait LabelOptions {
     fn poll<F>(&self, interval: u64, func: F)
     where
         F: Fn() -> String + 'static;
@@ -14,7 +14,7 @@ pub trait LabelPoll {
         F: Fn() -> String + Send + Sync + 'static;
 }
 
-impl LabelPoll for Label {
+impl LabelOptions for Label {
     fn poll<F>(&self, interval: u64, func: F)
     where
         F: Fn() -> String + 'static,
@@ -41,15 +41,15 @@ impl LabelPoll for Label {
         label.set_label(func().as_str());
 
         glib::MainContext::default().spawn_local(async move {
-           let mut stream = stream;
-           let mut old = func();
-           while let Some(_) = stream.next().await {
-               let new_text = func();
-               if new_text != old {
-                   label.set_text(&new_text);
-                   old = new_text;
-               }
-           }
+            let mut stream = stream;
+            let mut old = func();
+            while let Some(_) = stream.next().await {
+                let new_text = func();
+                if new_text != old {
+                    label.set_text(&new_text);
+                    old = new_text;
+                }
+            }
         });
     }
 }
