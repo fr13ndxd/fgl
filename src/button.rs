@@ -1,7 +1,7 @@
 use futures::stream::StreamExt;
 use glib::interval_stream;
 use gtk4::glib;
-use gtk4::traits::ButtonExt;
+use gtk4::prelude::ButtonExt;
 use gtk4::Button;
 use std::time::Duration;
 
