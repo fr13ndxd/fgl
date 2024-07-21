@@ -3,3 +3,5 @@ pub mod icon;
 pub mod label;
 
 pub mod widgets;
+
+pub mod services;
