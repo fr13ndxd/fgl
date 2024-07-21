@@ -9,12 +9,12 @@ pub fn get_volume() -> i32 {
     let output = String::from_utf8_lossy(output.stdout());
 
     for line in output.lines() {
-        if let Some(volume_str) = line.split_whitespace().nth(1) {
-            let volume_percentage: u32 = volume_str
+        if let Some(vol_str) = line.split_whitespace().nth(1) {
+            let vol = vol_str
                 .trim_end_matches('%')
-                .parse()
+                .parse::<i32>()
                 .expect("Failed to parse volume");
-            return volume_percentage;
+            return vol;
         }
     }
 
