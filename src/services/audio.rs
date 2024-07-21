@@ -25,7 +25,7 @@ pub fn get_audio_icon() -> String {
     let volume = get_volume();
 
     return match volume {
-        0 => String::from("audio-volume-muted-symbolic"),
+        ..0 => String::from("audio-volume-muted-symbolic"),
         1..34 => String::from("audio-volume-low-symbolic"),
         34..67 => String::from("audio-volume-high-symbolic"),
         67.. => String::from("audio-volume-overamplified-symbolic"),
