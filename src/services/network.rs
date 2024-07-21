@@ -1,6 +1,4 @@
-use rusty_network_manager::{AccessPointProxy, NetworkManagerProxy, WirelessProxy};
 use std::process::Command;
-use zbus::Connection;
 
 pub fn strength() -> i32 {
     let singal = Command::new("nmcli")
@@ -27,10 +25,6 @@ pub fn strength() -> i32 {
 }
 
 pub fn state() -> String {
-    let connection = Connection::system().await;
-
-    let nm = NetworkManagerProxy::new(&connection);
-
     let output = Command::new("nmcli")
         .args(["-t", "-f", "STATE", "general", "status"])
         .output()
