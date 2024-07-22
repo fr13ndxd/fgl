@@ -47,10 +47,10 @@ pub fn get_icon_name() -> String {
             _ => String::from("network-wireless-off"),
         };
     } else if state == "connecting".to_string() {
-        return "network-wireless-acquiring-symbolic".to_string();
+        return String::from("network-wireless-acquiring-symbolic");
     } else if state == "disconnected".to_string() {
-        return "network-wireless-offline-symbolic".to_string();
+        return String::from("network-wireless-offline-symbolic");
     }
 
-    "network-wireless-disabled-symbolic".to_string()
+    String::from("network-wireless-disabled-symbolic")
 }
