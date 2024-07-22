@@ -39,12 +39,12 @@ pub fn get_icon_name() -> String {
     let state = state();
     if state.to_string() == "connected" {
         return match strength() {
-            0..=20 => String::from("network-wireless-signal-weak"),
-            21..=40 => String::from("network-wireless-signal-ok"),
-            41..=60 => String::from("network-wireless-signal-good"),
-            61..=80 => String::from("network-wireless-signal-excellent"),
-            81..=100 => String::from("network-wireless-signal-excellent"),
-            _ => String::from("network-wireless-off"),
+            0..=20 => String::from("network-wireless-signal-weak-symbolic"),
+            21..=40 => String::from("network-wireless-signal-ok-symbolic"),
+            41..=60 => String::from("network-wireless-signal-good-symbolic"),
+            61..=80 => String::from("network-wireless-signal-excellent-symbolic"),
+            81..=100 => String::from("network-wireless-signal-excellent-symbolic"),
+            _ => String::from("network-wireless-off-symbolic"),
         };
     } else if state == "connecting".to_string() {
         return String::from("network-wireless-acquiring-symbolic");
