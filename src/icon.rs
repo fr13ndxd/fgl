@@ -18,9 +18,9 @@ impl IconOptions for Image {
         let icon = self.clone();
         let stream = interval_stream(Duration::from_millis(100));
 
-        icon.set_icon_name(Some(func().as_str()));
-
         glib::MainContext::default().spawn_local(async move {
+            icon.set_icon_name(Some(func().as_str()));
+
             let mut stream = stream;
             let mut old = func();
             while let Some(_) = stream.next().await {

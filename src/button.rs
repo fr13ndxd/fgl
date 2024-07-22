@@ -39,9 +39,9 @@ impl ButtonOptions for Button {
         let button = self.clone();
         let stream = interval_stream(Duration::from_millis(100));
 
-        button.set_label(&func());
-
         glib::MainContext::default().spawn_local(async move {
+            button.set_label(&func());
+
             let mut stream = stream;
             let mut old = func();
             while let Some(_) = stream.next().await {
