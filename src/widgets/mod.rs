@@ -1,3 +1,6 @@
+pub mod button;
+pub mod icon;
+pub mod label;
 use gtk4::prelude::WidgetExt;
 
 pub trait WidgetOptions {
