@@ -25,19 +25,16 @@ pub fn strength() -> i32 {
 }
 
 pub fn state() -> String {
-    let output = Command::new("nmcli")
-        .args(["-t", "-f", "STATE", "general", "status"])
-        .output()
-        .expect("Failed to execute nmcli command");
-
-    let status = String::from_utf8_lossy(&output.stdout).trim().to_string();
-
-    status
+    let nm = network_manager::NetworkManager::new();
+    match nm.get_state() {
+        Ok(state) => format!("{:?}", state),
+        Err(_) => format!("error"),
+    }
 }
 
 pub fn get_icon_name() -> String {
     let state = state();
-    if state.to_string() == "connected" {
+    if state.to_string() == "ConnectedGlobal" {
         return match strength() {
             0..=20 => String::from("network-wireless-signal-weak-symbolic"),
             21..=40 => String::from("network-wireless-signal-ok-symbolic"),
@@ -46,9 +43,9 @@ pub fn get_icon_name() -> String {
             81..=100 => String::from("network-wireless-signal-excellent-symbolic"),
             _ => String::from("network-wireless-off-symbolic"),
         };
-    } else if state == "connecting".to_string() {
+    } else if state == "Connecting".to_string() {
         return String::from("network-wireless-acquiring-symbolic");
-    } else if state == "disconnected".to_string() {
+    } else if state == "Disconnected".to_string() {
         return String::from("network-wireless-offline-symbolic");
     }
 
