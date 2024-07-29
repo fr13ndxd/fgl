@@ -1,4 +1,5 @@
 use gtk4::glib;
+use gtk4::prelude::*;
 use gtk4::traits::RangeExt;
 use gtk4::Scale;
 use tokio::sync::watch;
