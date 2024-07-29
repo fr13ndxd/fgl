@@ -38,7 +38,7 @@ impl ScaleOptions for Scale {
         glib::MainContext::default().spawn_local(async move {
             loop {
                 match rx.changed().await {
-                    Ok(()) => scale.set_value(rx.borrow().into()),
+                    Ok(()) => scale.set_value(*rx.borrow()),
                     Err(_) => break,
                 }
             }
