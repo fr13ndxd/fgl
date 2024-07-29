@@ -7,7 +7,7 @@ use tokio::sync::watch;
 pub trait ScaleOptions {
     fn watch<F>(&self, delay: u64, func: F)
     where
-        F: Fn() -> String + Send + Sync + 'static;
+        F: Fn() -> f64 + Send + Sync + 'static;
 }
 
 impl ScaleOptions for Scale {
