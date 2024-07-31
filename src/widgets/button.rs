@@ -38,7 +38,7 @@ impl ButtonOptions for Button {
         F: Fn() -> String + Send + Sync + 'static,
     {
         let button = self.clone();
-        let (tx, mut rx) = watch::channel(func());
+        let (tx, mut rx) = watch::channel(String::new());
 
         let func = std::sync::Arc::new(func);
 

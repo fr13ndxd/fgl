@@ -14,7 +14,7 @@ impl IconOptions for Image {
         F: Fn() -> String + Send + Sync + 'static,
     {
         let icon = self.clone();
-        let (tx, mut rx) = watch::channel(func());
+        let (tx, mut rx) = watch::channel(String::new());
 
         let func = std::sync::Arc::new(func);
 

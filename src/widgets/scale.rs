@@ -15,7 +15,7 @@ impl ScaleOptions for Scale {
         F: Fn() -> f64 + Send + Sync + 'static,
     {
         let scale = self.clone();
-        let (tx, mut rx) = watch::channel(func());
+        let (tx, mut rx) = watch::channel(0.0);
 
         let func = std::sync::Arc::new(func);
 
