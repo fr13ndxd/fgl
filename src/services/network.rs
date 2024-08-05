@@ -34,7 +34,7 @@ pub fn state() -> String {
 
 pub fn get_icon_name() -> String {
     let state = state();
-    if state.to_string() == "ConnectedGlobal" {
+    if state == "ConnectedGlobal" {
         return match strength() {
             0..=20 => String::from("network-wireless-signal-weak-symbolic"),
             21..=40 => String::from("network-wireless-signal-ok-symbolic"),
@@ -43,9 +43,9 @@ pub fn get_icon_name() -> String {
             81..=100 => String::from("network-wireless-signal-excellent-symbolic"),
             _ => String::from("network-wireless-off-symbolic"),
         };
-    } else if state == "Connecting".to_string() {
+    } else if state == "Connecting" {
         return String::from("network-wireless-acquiring-symbolic");
-    } else if state == "Disconnected".to_string() {
+    } else if state == "Disconnected" {
         return String::from("network-wireless-offline-symbolic");
     }
 
