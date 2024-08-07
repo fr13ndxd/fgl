@@ -1,3 +1,2 @@
-pub mod widgets;
-
 pub mod services;
+pub mod widgets;
